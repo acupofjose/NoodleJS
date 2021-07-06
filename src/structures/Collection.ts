@@ -4,8 +4,11 @@
  * @extends {Map}
  */
 class Collection extends Map {
-  constructor(iterable) {
-    super(iterable);
+  _array: any
+  _keyArray: any
+
+  constructor(iterable?: any) {
+    super()
 
     /**
      * Cached array for the `array()` method - will be reset to `null` whenever `set()` or `delete()` are called
@@ -13,7 +16,7 @@ class Collection extends Map {
      * @type {?Array}
      * @private
      */
-    Object.defineProperty(this, '_array', { value: null, writable: true, configurable: true });
+    Object.defineProperty(this, "_array", { value: null, writable: true, configurable: true })
 
     /**
      * Cached array for the `keyArray()` method - will be reset to `null` whenever `set()` or `delete()` are called
@@ -21,19 +24,19 @@ class Collection extends Map {
      * @type {?Array}
      * @private
      */
-    Object.defineProperty(this, '_keyArray', { value: null, writable: true, configurable: true });
+    Object.defineProperty(this, "_keyArray", { value: null, writable: true, configurable: true })
   }
 
-  set(key, val) {
-    this._array = null;
-    this._keyArray = null;
-    return super.set(key, val);
+  set(key: any, val: any) {
+    this._array = null
+    this._keyArray = null
+    return super.set(key, val)
   }
 
-  delete(key) {
-    this._array = null;
-    this._keyArray = null;
-    return super.delete(key);
+  delete(key: any) {
+    this._array = null
+    this._keyArray = null
+    return super.delete(key)
   }
 
   /**
@@ -43,8 +46,8 @@ class Collection extends Map {
    * @returns {Array}
    */
   array() {
-    if (!this._array || this._array.length !== this.size) this._array = Array.from(this.values());
-    return this._array;
+    if (!this._array || this._array.length !== this.size) this._array = Array.from(this.values())
+    return this._array
   }
 
   /**
@@ -62,22 +65,22 @@ class Collection extends Map {
    * @example
    * collection.find(val => val.username === 'Bob');
    */
-  find(propOrFn, value) {
-    if (typeof propOrFn === 'string') {
-      if (typeof value === 'undefined') throw new Error('Value must be specified.');
+  find(propOrFn: any, value: any) {
+    if (typeof propOrFn === "string") {
+      if (typeof value === "undefined") throw new Error("Value must be specified.")
       for (const item of this.values()) {
-        if (item[propOrFn] === value) return item;
+        if (item[propOrFn] === value) return item
       }
-      return null;
-    } else if (typeof propOrFn === 'function') {
+      return null
+    } else if (typeof propOrFn === "function") {
       for (const [key, val] of this) {
-        if (propOrFn(val, key, this)) return val;
+        if (propOrFn(val, key, this)) return val
       }
-      return null;
+      return null
     } else {
-      throw new Error('First argument must be a property string or a function.');
+      throw new Error("First argument must be a property string or a function.")
     }
   }
 }
 
-module.exports = Collection;
+export default Collection

@@ -1,14 +1,16 @@
-exports.Audio = {
-    sampleRate: 48000,
-    channels: 1,
-    bitDepth: 16,
-    frameSize: 480,
-    frameLength: 10
+import { ClientOptions } from "."
+
+export const Audio = {
+  sampleRate: 48000,
+  channels: 1,
+  bitDepth: 16,
+  frameSize: 480,
+  frameLength: 10,
 }
 
-exports.Network = {
-    framesPerPacket: 1,
-    quality: 40000
+export const Network = {
+  framesPerPacket: 1,
+  quality: 40000,
 }
 
 /**
@@ -20,11 +22,11 @@ exports.Network = {
  * @property {string} [name='NoodleJS'] The name of the user that will connect
  * @property {string} [password=''] A password when the server has one
  */
-exports.DefaultOptions = {
-    url: 'localhost',
-    port: '64738',
-    rejectUnauthorized: false,
-    name: 'NoodleJS',
-    password: '',
-    tokens: []
+export const DefaultOptions: ClientOptions = {
+  url: "localhost",
+  port: 64738,
+  rejectUnauthorized: false,
+  name: "NoodleJS",
+  password: "",
+  tokens: [],
 }

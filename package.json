@@ -1,18 +1,23 @@
 {
-  "name": "noodle.js",
+  "name": "@acupofjose/noodle",
   "version": "1.5.0",
-  "homepage": "https://github.com/Gielert/NoodleJS",
-  "bugs": "https://github.com/Gielert/NoodleJS/issues",
+  "homepage": "https://github.com/acupofjose/NoodleJS",
+  "bugs": {
+    "url": "https://github.com/acupofjose/NoodleJS/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Gielert/NoodleJS.git"
+    "url": "git+https://github.com/acupofjose/NoodleJS.git"
   },
   "engines": {
     "node": ">=10.0.0"
   },
   "description": "A NodeJS mumble client",
-  "main": "src/Client.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "prepublish": "tsc",
+    "build": "tsc",
     "test": "nyc --reporter=text-summary mocha --exit",
     "lint": "eslint src",
     "generate:types": "npx -p typescript tsc src/**/*.js --declaration --allowjs --emitDeclarationOnly --outFile index.d.ts"
@@ -21,20 +26,28 @@
     "NodeJS",
     "Mumble"
   ],
-  "author": "Michiel",
+  "authors": [
+    "Michiel Mooring <https://github.com/Gielert>",
+    "Joseph Schultz <joseph@acupofjose.com>"
+  ],
   "license": "MIT",
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
     "bluebird": "^3.7.2",
     "fluent-ffmpeg": "^2.1.2",
-    "protobufjs": "^6.9.0"
+    "protobufjs": "^6.11.2"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.36",
     "chai": "^4.2.0",
     "eslint": "^7.12.0",
     "gulp": "^4.0.2",
     "jsdoc-to-markdown": "^6.0.1",
     "mocha": "^8.2.0",
-    "nyc": "^15.1.0"
+    "nyc": "^15.1.0",
+    "typescript": "^4.3.5"
+  },
+  "directories": {
+    "test": "test"
   }
 }
