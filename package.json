@@ -14,7 +14,8 @@
   "main": "src/Client.js",
   "scripts": {
     "test": "nyc --reporter=text-summary mocha --exit",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "generate:types": "npx -p typescript tsc src/**/*.js --declaration --allowjs --emitDeclarationOnly --outFile index.d.ts"
   },
   "keywords": [
     "NodeJS",
