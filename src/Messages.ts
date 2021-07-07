@@ -1,4 +1,4 @@
-export default {
+const Messages: { [key: number]: string } = {
   0: "Version",
   1: "UDPTunnel",
   2: "Authenticate",
@@ -26,3 +26,5 @@ export default {
   24: "ServerConfig",
   25: "SuggestConfig",
 }
+
+export default Messages

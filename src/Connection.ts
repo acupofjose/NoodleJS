@@ -1,11 +1,13 @@
 import * as tls from "tls"
+import * as Constants from "./Constants"
+
 import Promise from "bluebird"
 import Protobuf from "./Protobuf"
+import Util from "./Util"
+
 import { EventEmitter } from "events"
 import { OpusEncoder } from "@discordjs/opus"
 import { ClientOptions } from "./index"
-import * as Constants from "./Constants"
-import Util from "./Util"
 
 class Connection extends EventEmitter {
   options: ClientOptions
@@ -29,7 +31,7 @@ class Connection extends EventEmitter {
   }
 
   connect() {
-    new Protobuf().then((protobuf: any) => {
+    new Protobuf().load().then((protobuf: any) => {
       this.protobuf = protobuf
       this.socket = tls.connect(this.options.port, this.options.url, this.options, () => {
         this.emit("connected")

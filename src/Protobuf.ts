@@ -1,15 +1,12 @@
 import Promise from "bluebird"
-
-const protobufjs = require("protobufjs")
-const path = require("path")
-const Messages = require("./Messages")
+import * as path from "path"
+import Messages from "./Messages"
+import protobufjs from "protobufjs"
 
 class Protobuf {
   mumble: any
-  then(arg0: any) {
-    throw new Error("Method not implemented.")
-  }
-  constructor() {
+
+  load = (): globalThis.Promise<this> => {
     return protobufjs
       .load(path.join(__dirname, "Mumble.proto"))
       .then((root: any) => {
@@ -17,6 +14,7 @@ class Protobuf {
         return Promise.resolve(this)
       })
       .catch((err: any) => {
+        console.error(err)
         throw new Error(err)
       })
   }
@@ -34,11 +32,11 @@ class Protobuf {
     return packet.decode(buffer).toJSON()
   }
 
-  nameById(id: any) {
-    return Messages[id]
+  nameById(id: number) {
+    return Messages[id] as any
   }
 
-  idByName(name: any) {
+  idByName(name: string) {
     for (const key in Messages) {
       if (Messages[key] == name) return key
     }

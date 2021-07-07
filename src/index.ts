@@ -1,17 +1,18 @@
+import * as Constants from "./Constants"
 import Promise from "bluebird"
+
 import { EventEmitter } from "events"
 import Connection from "./Connection"
 import Collection from "./structures/Collection"
 import Dispatcher from "./voice/Dispatcher"
 
-const Util = require("./Util")
-const Constants = require("./Constants")
-const ServerSync = require("./handlers/ServerSync")
-const UserState = require("./handlers/UserState")
-const UserRemove = require("./handlers/UserRemove")
-const ChannelState = require("./handlers/ChannelState")
-const ChannelRemove = require("./handlers/ChannelRemove")
-const TextMessage = require("./handlers/TextMessage")
+import Util from "./Util"
+import ServerSync from "./handlers/ServerSync"
+import UserState from "./handlers/UserState"
+import UserRemove from "./handlers/UserRemove"
+import ChannelState from "./handlers/ChannelState"
+import ChannelRemove from "./handlers/ChannelRemove"
+import TextMessage from "./handlers/TextMessage"
 
 export interface ClientOptions {
   url: string
@@ -26,7 +27,7 @@ export interface ClientOptions {
  * The main class for interacting with the Mumble server
  * @extends EventEmitter
  */
-class Client extends EventEmitter {
+export default class Client extends EventEmitter {
   options: ClientOptions
   connection: Connection
   channels: Collection
@@ -34,6 +35,7 @@ class Client extends EventEmitter {
   voiceConnection: Dispatcher
   ping: any
   user: any
+  synced: any
 
   /**
    * @param  {ClientOptions} [options] Options for the client
@@ -226,5 +228,3 @@ class Client extends EventEmitter {
     }
   }
 }
-
-export default Client

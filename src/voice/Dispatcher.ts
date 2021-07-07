@@ -3,7 +3,8 @@ import Client from "../index"
 const EventEmitter = require("events").EventEmitter
 const DispatchStream = require("./DispatchStream")
 const ffmpeg = require("fluent-ffmpeg")
-class Dispatcher extends EventEmitter {
+
+export default class Dispatcher extends EventEmitter {
   constructor(client: Client) {
     super()
     this.client = client
@@ -50,5 +51,3 @@ class Dispatcher extends EventEmitter {
     if (this.command) this.command.kill()
   }
 }
-
-export default Dispatcher
